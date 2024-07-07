@@ -1,30 +1,45 @@
 package utils;
 
+
 import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class TestData {
 
-    Faker faker = new Faker(new Locale("en-GB"));
+    Faker faker = new Faker(new Locale("en-US"));
 
     public String
-
             firstName = getRandomFirstName(),
             lastName = getRandomLastName(),
             email = getRandomEmail(),
             gender = getRandomGender(),
             userNumber = getRandomNumber(),
-            birthday = getRandomDateAsMapOfStrings(),
             subject = getRandomSubject(),
             hobbies = getRandomHobbies(),
             address = getRandomAddres(),
-            uploadFile = uploadFile(),
-            state = getRandomState(),
-            userCity = getStateCityMap();
+            uploadFile = uploadFile();
+
+    public HashMap<String, String> birthday = getRandomDateAsMapOfStrings();
+
+    HashMap<String, List<String>> statesCities = new HashMap<>();
+
+    {
+        statesCities.put("NCR", List.of("Delhi", "Gurgaon", "Noida"));
+        statesCities.put("Uttar Pradesh", List.of("Agra", "Lucknow", "Merrut"));
+        statesCities.put("Haryana", List.of("Karnal", "Panipat"));
+        statesCities.put("Rajasthan", List.of("Jaipur", "Jaiselmer"));
+    }
+
+    Map<String, String> stateCityMap = getStateCityMap();
+
+    public String
+            state = stateCityMap.get("state"),
+            userCity = stateCityMap.get("city");
 
 
     String getRandomFirstName() {
@@ -40,13 +55,12 @@ public class TestData {
     }
 
     String getRandomNumber() {
-        return faker.phoneNumber().phoneNumber();
+        return faker.phoneNumber().subscriberNumber(10);
     }
 
     String getRandomAddres() {
         return faker.address().fullAddress();
     }
-
 
     String getRandomGender() {
         String[] gender = {"Male", "Female", "Other"};
@@ -63,33 +77,23 @@ public class TestData {
         return faker.options().option(hobbies);
     }
 
-
     String uploadFile() {
-        return faker.options().option("2.png", "mountains.jpg");
+        return faker.options().option("img.png");
     }
 
     String getRandomState() {
-        String[] state = {"NCR", "Uttar Pradesh", "Haryana","Rajasthan"};
+        String[] state = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
         return faker.options().option(state);
     }
 
-    HashMap<String, List<String>> statesCities = new HashMap<>();
-
-    {
-        statesCities.put("NCR", List.of("Delhi", "Gurgaon", "Noida"));
-        statesCities.put("Uttar Pradesh", List.of("Agra", "Lucknow", "Merrut"));
-        statesCities.put("Haryana", List.of("Karnal", "Panipat"));
-        statesCities.put("Rajasthan", List.of("Jaipur", "Jaiselmer"));
-    }
-
-    public HashMap<String, String> getStateCityMap(){
-        HashMap<String,String> result = new HashMap<>();
+    public HashMap<String, String> getStateCityMap() {
+        HashMap<String, String> result = new HashMap<>();
 
         String stateString = (String) faker.options().option(statesCities.keySet().toArray());
 
         result.put("state", stateString);
 
-        String cityString =  (String) faker.options().option(statesCities.get(stateString).toArray());
+        String cityString = (String) faker.options().option(statesCities.get(stateString).toArray());
 
         result.put("city", cityString);
 

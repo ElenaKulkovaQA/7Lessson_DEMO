@@ -26,7 +26,7 @@ public class RegistrationWithRandomUtilsTests extends TestBase {
                 .setEmail(testData.email)
                 .setGender(testData.gender)
                 .setUserNumber(testData.userNumber)
-                .setDateOfBirth(testData.birthday)
+                .setDateOfBirth(testData.birthday.get("day"), testData.birthday.get("month"), testData.birthday.get("year"))
                 .uploadPicture(testData.uploadFile)
                 .setAddress(testData.address)
                 .setSubjects(testData.subject)
@@ -40,17 +40,21 @@ public class RegistrationWithRandomUtilsTests extends TestBase {
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
-        results.
-                checkResult("Student Name", testData.firstName + testData.lastName)
+        String fullName = testData.firstName + " " + testData.lastName;
+        String fulldate = testData.birthday.get("day") + " " + testData.birthday.get("month") + "," + testData.birthday.get("year");
+        String AbsolutAddress = testData.state + " " + testData.userCity;
+
+        results
+                .checkResult("Student Name", fullName)
                 .checkResult("Student Email", testData.email)
                 .checkResult("Gender", testData.gender)
                 .checkResult("Mobile", testData.userNumber)
-                .checkResult("Date of Birth", testData.birthday)
+                .checkResult("Date of Birth", fulldate)
                 .checkResult("Subjects", testData.subject)
-                .checkResult("Hobbies", testData.subject)
+                .checkResult("Hobbies", testData.hobbies)
                 .checkResult("Picture", testData.uploadFile)
                 .checkResult("Address", testData.address)
-                .checkResult("State and City", testData.state + testData.userCity);
+                .checkResult("State and City", AbsolutAddress);
 
     }
 }
