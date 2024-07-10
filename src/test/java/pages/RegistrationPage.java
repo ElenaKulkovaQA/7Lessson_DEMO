@@ -1,6 +1,7 @@
-package pages.components;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -22,8 +23,6 @@ public class RegistrationPage {
             stateWrapper = $("#state"),
             cityWrapper = $("#city"),
             submitButton = $("#submit");
-
-
 
     private CalendarComponent
             calendarComponent = new CalendarComponent();
@@ -116,8 +115,6 @@ public class RegistrationPage {
 
         return this;
     }
-
-
 
         public RegistrationPage submit()
         {
