@@ -81,10 +81,6 @@ public class TestData {
         return faker.options().option("img.png");
     }
 
-    String getRandomState() {
-        String[] state = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-        return faker.options().option(state);
-    }
 
     public HashMap<String, String> getStateCityMap() {
         HashMap<String, String> result = new HashMap<>();

@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.components.CheckResultComponent;
-import pages.components.RegistrationPage;
+import pages.RegistrationPage;
 
 public class RegistrationFormWithPageObjectsTest extends TestBase {
 
@@ -23,7 +23,7 @@ public class RegistrationFormWithPageObjectsTest extends TestBase {
                 .setDateOfBirth("30", "December", "1986")
                 .setSubjects("Maths")
                 .setHobbies("Sports")
-                .uploadPicture("photo.jpg")
+                .uploadPicture("img.png")
                 .setAddress("Some address 1")
                 .setState("NCR")
                 .setCity("Delhi")
@@ -37,7 +37,7 @@ public class RegistrationFormWithPageObjectsTest extends TestBase {
                 .checkResult("Date of Birth", "30 December,1986")
                 .checkResult("Subjects", "Maths")
                 .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "photo.jpg")
+                .checkResult("Picture", "img.png")
                 .checkResult("Address", "Some address 1")
                 .checkResult("State and City", "NCR Delhi");
 

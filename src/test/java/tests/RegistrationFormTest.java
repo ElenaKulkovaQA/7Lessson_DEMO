@@ -40,7 +40,7 @@ public class RegistrationFormTest {
         $(".react-datepicker__day--001:not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("photo.jpg");
+        $("#uploadPicture").uploadFromClasspath("img.png");
         $("#currentAddress").setValue("First street");
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
@@ -57,7 +57,7 @@ public class RegistrationFormTest {
                 Condition.text("Date of Birth 01 December,1986"),
                 Condition.text("Subjects Maths"),
                 Condition.text("Hobbies Sports"),
-                Condition.text("photo.jpg"),
+                Condition.text("img.png"),
                 Condition.text("Address First street"),
                 Condition.text("State and City NCR Delhi")
         );
